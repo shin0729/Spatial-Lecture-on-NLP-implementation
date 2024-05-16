@@ -15,3 +15,5 @@ for line in word.split("\n"):
     for word in line.split(" "):
         print(word, stemmer.stemWord(word))
     print()
+
+#stemmingアルゴリズムの理解はできていない．マジで実装しただけ．ライブラリを用いました～で終了
