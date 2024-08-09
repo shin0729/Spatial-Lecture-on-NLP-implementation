@@ -1,12 +1,12 @@
 # 必要モジュールのインポート
 import os
-from dotenv import load_dotenv
 import re
 
 def load_file(file_path):
-    with open(file_path, "r") as f:
+    with open(file_path, "r",encoding='CP932') as f:
         text = f.read()
-        text = text.split("lines:")[1]
+        if "lines:" in text:
+            text = text.split("lines:")[1]
     return text
 
 def preprocess_text(file_path):
@@ -18,8 +18,8 @@ def preprocess_text(file_path):
     # 削除する数字のコンパイル
     num_regex = re.compile('\d+,?\d*')
     for file in files:
-        file_path = os.path.join(file_path, file)
-        text = load_file(file_path)
+        target_file_path = os.path.join(file_path, file)
+        text = load_file(target_file_path)
         # 文単位で分割
         text = text.split("\n")
         for i in range(len(text)):
